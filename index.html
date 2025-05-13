@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CashFlow Compass</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <meta name="theme-color" content="#007bff" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splashScreen" class="splash-screen">
+    <img src="icons/icon-192.png" alt="Loading..." class="splash-logo" />
+    <p>Loading CashFlow Compass...</p>
+  </div>
+
+  <!-- Offline Alert -->
+  <div id="offlineAlert" class="offline-alert hidden">🔌 You’re in offline mode</div>
+
+  <!-- Main App Content -->
+  <div id="appContent" style="display:none;">
+    <div id="pinModal" class="pin-modal">
+      <div class="pin-box">
+        <h3 id="pinTitle">🔐 Enter 4-Digit PIN</h3>
+        <input type="password" id="pinInput" maxlength="4" placeholder="****" />
+        <button onclick="handlePinSubmit()">Submit</button>
+      </div>
+    </div>
+
+    <h1>CashFlow Compass 💰</h1>
+
+    <div class="toggle-mode">
+      <button id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">🌗</button>
+      <input type="color" id="themeColor" title="Pick a theme color" />
+      <span id="colorPreview"></span>
+    </div>
+
+    <div class="input-section">
+      <h2>Enter Your Details</h2>
+      <form id="financeForm">
+        <fieldset>
+          <legend>Income & Expenses</legend>
+          <label for="income">💼 Income (₹): <input type="number" id="income" required /></label>
+          <label for="education">📚 Education (₹): <input type="number" id="education" required /></label>
+          <label for="houseRent">🏠 Rent + Electricity (₹): <input type="number" id="houseRent" required /></label>
+          <label for="transportCost">🚌 Transport (₹): <input type="number" id="transportCost" required /></label>
+          <label for="foodCost">🍽️ Food (₹): <input type="number" id="foodCost" required /></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Extras</legend>
+          <label for="extraCashflow">📈 Extra Cashflow (±₹): <input type="number" id="extraCashflow" /></label>
+          <label for="entryDate">📅 Entry Date: <input type="date" id="entryDate" /></label>
+        </fieldset>
+
+        <button type="submit" class="btn-calculate">Calculate 💹</button>
+      </form>
+    </div>
+
+    <div class="data-section">
+      <h2>💡 Result</h2>
+      <p id="result" class="fade"></p>
+      <div class="progress-wrapper">
+        <label>💾 Savings Rate:</label>
+        <progress id="savingsBar" value="0" max="100"></progress>
+        <span id="savingsLabel">0%</span>
+      </div>
+      <div class="btn-group">
+        <button onclick="downloadPDF()" class="btn-green">📄 PDF</button>
+        <button onclick="copyResult()" class="btn-blue">📋 Copy</button>
+        <button onclick="shareByEmail()" class="btn-purple">📧 Email</button>
+        <button onclick="resetForm()" class="btn-red">🔄 Reset</button>
+      </div>
+    </div>
+
+    <div class="data-section">
+      <button onclick="exportData()">⬇️ Export Data</button>
+      <input type="file" id="importFile" accept="application/json" onchange="importData(event)" />
+    </div>
+
+    <div id="investmentSuggestions" class="data-section"></div>
+    <div id="financialAdvice" class="data-section"></div>
+    <div class="data-section">
+      <label for="mentorMode">👨‍🏫 Choose Your Finance Mentor:</label>
+      <select id="mentorMode" onchange="generateMentorAdvice()">
+        <option value="">-- Select Mentor --</option>
+        <option value="ca">🧾 CA Advisor</option>
+        <option value="frugal">💡 Frugal Guru</option>
+        <option value="hacker">🚀 Wealth Hacker</option>
+      </select>
+      <div id="mentorAdvice" class="mentor-advice"></div>
+    </div>
+
+    <div class="charts">
+      <canvas id="expenseChart"></canvas>
+      <canvas id="netChart"></canvas>
+    </div>
+
+    <div class="data-section" style="text-align:center;">
+  <button id="manualInstallBtn" class="btn-install-static">📲 Install App</button>
+</div>
+
+
+  <script>
+    window.addEventListener('load', () => {
+      document.getElementById("splashScreen").style.display = "none";
+      document.getElementById("appContent").style.display = "block";
+    });
+    window.addEventListener("online", () => {
+      document.getElementById("offlineAlert").classList.add("hidden");
+    });
+    window.addEventListener("offline", () => {
+      document.getElementById("offlineAlert").classList.remove("hidden");
+    });
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

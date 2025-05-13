@@ -1,0 +1,281 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+.input-section, .data-section {
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-group button {
+  margin: 5px;
+}
+
+.btn-calculate { background: #007bff; }
+.btn-blue { background: #3498db; }
+.btn-green { background: #28a745; }
+.btn-red { background: #dc3545; }
+.btn-purple { background: #6f42c1; }
+
+progress {
+  width: 100%;
+  height: 20px;
+}
+
+#savingsLabel {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.fade.visible {
+  opacity: 1;
+}
+
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+canvas {
+  max-width: 400px;
+  width: 100%;
+  height: auto !important;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.toggle-mode {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#colorPreview {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  border: 1px solid #000;
+  margin-left: 5px;
+}
+
+.dark-mode {
+  background: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .input-section, .dark-mode .data-section {
+  background: #1e1e1e;
+}
+
+.dark-mode input {
+  background: #333;
+  color: white;
+  border: 1px solid #444;
+}
+
+.dark-mode button {
+  color: white;
+}
+
+.pin-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pin-box {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 20px #000;
+}
+
+.pin-box input {
+  font-size: 24px;
+  padding: 10px;
+  width: 100px;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.pin-box button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.pin-box button:hover {
+  background-color: #b02a37;
+}
+
+.mentor-advice {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #fdf9e3;
+  border-left: 5px solid #ffc107;
+  border-radius: 5px;
+  font-style: italic;
+}
+
+.dark-mode .mentor-advice {
+  background-color: #3a3a3a;
+  color: #fffacd;
+  border-left-color: #ffcc00;
+}
+
+.btn-install {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 18px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.btn-install:hover {
+  background-color: #218838;
+}
+
+/* 🔄 Splash Screen */
+.splash-screen {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.splash-logo {
+  width: 100px;
+  margin-bottom: 20px;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 📶 Offline Mode Alert */
+.offline-alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffc107;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 0 0 10px 10px;
+  z-index: 1000;
+  font-weight: bold;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 📱 Install Help Styling */
+.install-help {
+  background-color: #eaf7ff;
+  border-left: 4px solid #007bff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+.btn-install-static {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.btn-install-static:hover {
+  background-color: #0056b3;
+}
